@@ -26,9 +26,37 @@ class FileManager:
         self.OpenFileMenu.place(x=220, y=130)
         self.OpenFileB.place(x=240, y=165)
     
+    def OpenFileScreen(self):
+        OpenFileCanvas = Canvas(self.WIN)
+
+        def GoBack():
+            OpenFileCanvas.pack_forget()
+            self.FileManagerCanvas.pack(side=LEFT, fill=BOTH, expand=True)
+
+        def SaveChanges():
+            with open(f"C:\\MyFolder\\PythonProgramming\\MakingOSinPython\\MakingOSinPython\\Code\\Apps\\Storage\\{self.DropDownVar.get()}", 'w') as f:
+                f.write(DisplayText.get(1.0, 'end-1c'))
+
+        DisplayText = Text(OpenFileCanvas, width=50, height=20)
+        
+        with open(f"C:\\MyFolder\\PythonProgramming\\MakingOSinPython\\MakingOSinPython\\Code\\Apps\\Storage\\{self.DropDownVar.get()}", 'r') as f:
+            content = f.read()
+            DisplayText.insert("end-1c", content)
+
+        BackButton = Button(OpenFileCanvas, text="Back", font="Aerial 20", command=GoBack)
+
+        SaveButton = Button(OpenFileCanvas, text="Save", font="Aerial 20", command=SaveChanges)
+
+        OpenFileCanvas.pack(side=LEFT, fill=BOTH, expand=True)
+        BackButton.place(x=5, y=340)
+        SaveButton.place(x=160, y=340)
+        DisplayText.place(x=0,y=0)
+
     def OpenTheFile(self):
         self.OpenFileMenu.place_forget()
         self.OpenFileB.place_forget()
+        self.FileManagerCanvas.pack_forget()
+        self.OpenFileScreen()
 
     def ShowNewName(self):
         self.NewNameL.place(x=0, y=140)
@@ -48,6 +76,8 @@ class FileManager:
         remove(f"C:\\MyFolder\\PythonProgramming\\MakingOSinPython\\MakingOSinPython\\Code\\Apps\\Storage\\{self.DeleteFileVar.get()}")
         self.DeleteFilelist = listdir("C:\\MyFolder\\PythonProgramming\\MakingOSinPython\\MakingOSinPython\\Code\\Apps\\Storage")
         self.DeleteMenu = OptionMenu(self.FileManagerCanvas, self.DeleteFileVar, *self.DeleteFilelist)
+        self.DropDownVar.set("Choose File")
+        self.DeleteFileVar.set("Choose File")
 
     def MakeWidgets(self):
         self.FileManagerCanvas = Canvas(self.WIN)
@@ -58,7 +88,7 @@ class FileManager:
         self.NewNameE = Entry(self.FileManagerCanvas, textvariable=self.NewFileName, font="Aerial 10")
         self.NewCreateB = Button(self.FileManagerCanvas, text="Make", font="Aerial 15", command=self.MakeNewFile)
 
-        self.OpenMenuB = Button(self.FileManagerCanvas, text="Show Menu", font="Aerial 20", command=self.ShowDropDown)
+        self.OpenMenuB = Button(self.FileManagerCanvas, text="Show File", font="Aerial 20", command=self.ShowDropDown)
         self.OpenFileB = Button(self.FileManagerCanvas, text="Open File", font="Aerial 12", command=self.OpenTheFile)
 
         self.OpenFileMenu = OptionMenu(self.FileManagerCanvas, self.DropDownVar, *self.DropDownList)
