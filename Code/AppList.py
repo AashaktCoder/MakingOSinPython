@@ -1,0 +1,30 @@
+from tkinter import *
+from Apps.FileManager import FileManager
+from Apps.Camera import Camera
+
+class AppList:
+    def __init__(self, WIN):
+        self.WIN = WIN
+        self.AppCanvas = Canvas(self.WIN)
+
+        self.fileManager = FileManager(self.WIN, self.AppCanvas)
+
+    def OpenFileManager(self):
+        self.AppCanvas.pack_forget()
+        self.fileManager.Update()
+
+    def MakeWidgets(self):
+        self.MainTitle = Label(self.AppCanvas, text="App List of Panda OS", font="Aerial 30")
+
+        self.FileManagerBicon = PhotoImage(file="Images\\Icons\\FileManagerIcon.png")
+        self.FileManagerB = Button(self.AppCanvas, image=self.FileManagerBicon, command=self.OpenFileManager)
+
+    def PlaceWidgets(self):
+        self.AppCanvas.pack(side=LEFT, fill=BOTH, expand=True)
+        self.MainTitle.place(x=10,y=0)
+
+        self.FileManagerB.place(x=10, y=60)
+    
+    def Update(self):
+        self.MakeWidgets()
+        self.PlaceWidgets()
