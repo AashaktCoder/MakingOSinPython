@@ -1,6 +1,7 @@
 from tkinter import *
 from Apps.FileManager import FileManager
 from Apps.Camera import Camera
+from Apps.Gallery import Gallery
 
 class AppList:
     def __init__(self, WIN):
@@ -9,6 +10,7 @@ class AppList:
 
         self.fileManager = FileManager(self.WIN, self.AppCanvas)
         self.camera = Camera(self.WIN, self.AppCanvas)
+        self.gallery = Gallery(self.WIN, self.AppCanvas)
 
     def OpenFileManager(self):
         self.AppCanvas.pack_forget()
@@ -17,6 +19,10 @@ class AppList:
     def OpenCamera(self):
         self.AppCanvas.pack_forget()
         self.camera.Update()
+
+    def OpenGallery(self):
+        self.AppCanvas.pack_forget()
+        self.gallery.Update()
 
     def MakeWidgets(self):
         self.MainTitle = Label(self.AppCanvas, text="App List of Panda OS", font="Aerial 30")
@@ -27,12 +33,16 @@ class AppList:
         self.CameraBicon = PhotoImage(file="Images\\Icons\\CameraIcon.png")
         self.CameraB = Button(self.AppCanvas, image=self.CameraBicon, command=self.OpenCamera)
 
+        self.GalleryBicon = PhotoImage(file="Images\\Icons\\GalleryIcon.png")
+        self.GalleryB = Button(self.AppCanvas, image=self.GalleryBicon, command=self.OpenGallery)
+
     def PlaceWidgets(self):
         self.AppCanvas.pack(side=LEFT, fill=BOTH, expand=True)
         self.MainTitle.place(x=10,y=0)
 
         self.FileManagerB.place(x=10, y=60)
         self.CameraB.place(x=100, y=60)
+        self.GalleryB.place(x=190, y=60)
     
     def Update(self):
         self.MakeWidgets()

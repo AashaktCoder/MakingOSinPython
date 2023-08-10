@@ -1,27 +1,36 @@
 from tkinter import *
 from cv2 import VideoCapture, imshow, waitKey, destroyWindow, imwrite
+from os import listdir
+from PIL import Image
 
 class Camera:
     def __init__(self, WIN, AppListCanvas):
         self.WIN = WIN
         self.AppListCanvas = AppListCanvas
 
+        self.maxN = 0
+
     def GoBack(self):
         self.CameraCanvas.pack_forget()
         self.AppListCanvas.pack(side=LEFT, fill=BOTH, expand=True)
 
     def TurnOnCamera(self):
+        for i in listdir('Code\\Apps\\Storage'): 
+            if ".png" in i: 
+                self.maxN = int(i[6])+1
+
         cam = VideoCapture(0)
-        result, image = cam.read()
+        result, NewImg = cam.read()
 
         if result:
-            imshow("Camera Window", image)
-
-            k = waitKey(0)
-            if k == ord('q'):
-                destroyWindow("Camera Window")
-            
-            imwrite("newImg.png", image)
+            imwrite(f"Code\\Apps\\Storage\\newImg{self.maxN}.png", NewImg)
+            resizeImg = Image.open(f"Code\\Apps\\Storage\\newImg{self.maxN}.png")
+            resizeImg = resizeImg.resize((200, 200))
+            resizeImg.save(f"Code\\Apps\\Storage\\newImg{self.maxN}.png")
+            image2 = PhotoImage(file=f"Code\\Apps\\Storage\\newImg{self.maxN}.png")
+            self.ImgLabel.configure(image=image2, height=250, width=250)
+            self.ImgLabel.image = image2
+            cam = 0
 
     def MakeWidget(self):
         self.CameraCanvas = Canvas(self.WIN)
@@ -32,6 +41,8 @@ class Camera:
 
         self.TurnOnB = Button(self.CameraCanvas, text="Turn On", font="Aerial 20", command=self.TurnOnCamera)
 
+        self.ImgLabel = Label(self.CameraCanvas, image=None, height=10, width=10)
+
     def PlaceWidget(self):
         self.CameraCanvas.pack(side=LEFT, fill=BOTH, expand=True)
 
@@ -39,6 +50,7 @@ class Camera:
         self.BackButton.place(x=5, y=340)
 
         self.TurnOnB.place(x=120, y=90)
+        self.ImgLabel.place(x=100, y=150)
 
     def Update(self):
         self.MakeWidget()

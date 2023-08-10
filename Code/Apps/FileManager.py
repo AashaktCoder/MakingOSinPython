@@ -1,5 +1,6 @@
 from tkinter import *
-from os import listdir, remove
+from os import listdir, remove, path
+import glob
 
 class FileManager:
     def __init__(self, WIN, AppListCanvas):
@@ -22,6 +23,10 @@ class FileManager:
 
     def ShowDropDown(self):
         self.DropDownList = listdir("C:\\MyFolder\\PythonProgramming\\MakingOSinPython\\MakingOSinPython\\Code\\Apps\\Storage")
+        png_files = [file for file in self.DropDownList if file.endswith(".png")]
+        for png_file in png_files:
+            file_path = path.join("C:\\MyFolder\\PythonProgramming\\MakingOSinPython\\MakingOSinPython\\Code\\Apps\\Storage", png_file).replace("C:\\MyFolder\\PythonProgramming\\MakingOSinPython\\MakingOSinPython\\Code\\Apps\\Storage\\", '')
+            self.DropDownList.remove(file_path)
         self.OpenFileMenu = OptionMenu(self.FileManagerCanvas, self.DropDownVar, *self.DropDownList)
         self.OpenFileMenu.place(x=220, y=130)
         self.OpenFileB.place(x=240, y=165)
@@ -71,6 +76,11 @@ class FileManager:
         self.NewNameE.place_forget()
         self.NewCreateB.place_forget()
 
+    def ShowDeleteFiles(self):
+        self.DeleteFilelist = listdir("C:\\MyFolder\\PythonProgramming\\MakingOSinPython\\MakingOSinPython\\Code\\Apps\\Storage")
+        self.DeleteMenu = OptionMenu(self.FileManagerCanvas, self.DeleteFileVar, *self.DeleteFilelist)
+        self.DeleteMenu.place(x=150, y=290)
+
     def DeleteFile(self):
         self.DeleteMenu.place_forget()
         remove(f"C:\\MyFolder\\PythonProgramming\\MakingOSinPython\\MakingOSinPython\\Code\\Apps\\Storage\\{self.DeleteFileVar.get()}")
@@ -95,7 +105,7 @@ class FileManager:
 
         self.DeleteFileB = Button(self.FileManagerCanvas, text="Delete", font="Aerial 20", command=self.DeleteFile)
         self.DeleteMenu = OptionMenu(self.FileManagerCanvas, self.DeleteFileVar, *self.DeleteFilelist)
-        self.ShowDelete = Button(self.FileManagerCanvas, text="Show", font="Aerial 12", command=lambda: self.DeleteMenu.place(x=150, y=290))
+        self.ShowDelete = Button(self.FileManagerCanvas, text="Show", font="Aerial 12", command=self.ShowDeleteFiles)
 
         self.BackButton = Button(self.FileManagerCanvas, text="Back", font="Aerial 20", command=self.GoBack)
 
