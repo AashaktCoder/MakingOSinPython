@@ -15,7 +15,7 @@ class Camera:
         self.AppListCanvas.pack(side=LEFT, fill=BOTH, expand=True)
 
     def TurnOnCamera(self):
-        for i in listdir('Code\\Apps\\Storage'): 
+        for i in listdir('MakingOSinPython\\Code\\Apps\\Storage'): 
             if ".png" in i: 
                 self.maxN = int(i[6])+1
 
@@ -23,11 +23,11 @@ class Camera:
         result, NewImg = cam.read()
 
         if result:
-            imwrite(f"Code\\Apps\\Storage\\newImg{self.maxN}.png", NewImg)
-            resizeImg = Image.open(f"Code\\Apps\\Storage\\newImg{self.maxN}.png")
+            imwrite(f"MakingOSinPython\\Code\\Apps\\Storage\\newImg{self.maxN}.png", NewImg)
+            resizeImg = Image.open(f"MakingOSinPython\\Code\\Apps\\Storage\\newImg{self.maxN}.png")
             resizeImg = resizeImg.resize((200, 200))
-            resizeImg.save(f"Code\\Apps\\Storage\\newImg{self.maxN}.png")
-            image2 = PhotoImage(file=f"Code\\Apps\\Storage\\newImg{self.maxN}.png")
+            resizeImg.save(f"MakingOSinPython\\Code\\Apps\\Storage\\newImg{self.maxN}.png")
+            image2 = PhotoImage(file=f"MakingOSinPython\\Code\\Apps\\Storage\\newImg{self.maxN}.png")
             self.ImgLabel.configure(image=image2, height=250, width=250)
             self.ImgLabel.image = image2
             cam = 0

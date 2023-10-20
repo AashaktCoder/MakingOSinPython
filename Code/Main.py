@@ -11,7 +11,7 @@ class MainWindow:
 
     def Booting(self):
         self.WIN.title("Panda OS")
-        icon = PhotoImage(file="Images\\Icons\\PandaIcon.png")
+        icon = PhotoImage(file="MakingOSinPython\\Images\\Icons\\PandaIcon.png")
         self.WIN.iconphoto(False, icon)
         self.WIN.geometry("400x400")
         self.WIN.maxsize(400, 400)

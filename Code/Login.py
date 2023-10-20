@@ -11,7 +11,7 @@ class LoginSystem:
         self.LoginPassVal = StringVar()
 
     def Login(self):
-        with open("Other\\LoginInfo.txt", 'r') as f:
+        with open("MakingOSinPython\\Other\\LoginInfo.txt", 'r') as f:
             for i in f.readlines():
                 InfoList = eval(i)
 

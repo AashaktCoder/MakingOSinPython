@@ -27,13 +27,13 @@ class AppList:
     def MakeWidgets(self):
         self.MainTitle = Label(self.AppCanvas, text="App List of Panda OS", font="Aerial 30")
 
-        self.FileManagerBicon = PhotoImage(file="Images\\Icons\\FileManagerIcon.png")
+        self.FileManagerBicon = PhotoImage(file="MakingOSinPython\\Images\\Icons\\FileManagerIcon.png")
         self.FileManagerB = Button(self.AppCanvas, image=self.FileManagerBicon, command=self.OpenFileManager)
 
-        self.CameraBicon = PhotoImage(file="Images\\Icons\\CameraIcon.png")
+        self.CameraBicon = PhotoImage(file="MakingOSinPython\\Images\\Icons\\CameraIcon.png")
         self.CameraB = Button(self.AppCanvas, image=self.CameraBicon, command=self.OpenCamera)
 
-        self.GalleryBicon = PhotoImage(file="Images\\Icons\\GalleryIcon.png")
+        self.GalleryBicon = PhotoImage(file="MakingOSinPython\\Images\\Icons\\GalleryIcon.png")
         self.GalleryB = Button(self.AppCanvas, image=self.GalleryBicon, command=self.OpenGallery)
 
     def PlaceWidgets(self):

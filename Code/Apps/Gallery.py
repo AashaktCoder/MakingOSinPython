@@ -6,7 +6,7 @@ class Gallery:
         self.WIN = WIN
         self.AppList = AppList
 
-        self.FileList = listdir("Code\\Apps\\Storage")
+        self.FileList = listdir("MakingOSinPython\\Code\\Apps\\Storage")
         self.ImgList = []
 
         for i in self.FileList:
@@ -19,27 +19,27 @@ class Gallery:
         self.AppList.pack(side=LEFT, fill=BOTH, expand=True)
 
     def NextImg(self):
-        self.FileList = listdir("Code\\Apps\\Storage")
+        self.FileList = listdir("MakingOSinPython\\Code\\Apps\\Storage")
         lst = []
         for i in self.FileList:
             if ".png" in i: 
                 lst.append(i)
         self.ImgList = lst
 
-        NewImg = PhotoImage(file=f"Code\\Apps\\Storage\\{self.ImgList[self.imgCount+1]}")
+        NewImg = PhotoImage(file=f"C:\\MyFolder\\PythonProgramming\\MakingOSinPython\\MakingOSinPython\\Code\\Apps\\Storage\\{self.ImgList[self.imgCount+1]}")
         self.img.configure(image=NewImg, height=200, width=200)
         self.img.image = NewImg
         self.imgCount += 1
 
     def PreviousImg(self):
-        self.FileList = listdir("Code\\Apps\\Storage")
+        self.FileList = listdir("MakingOSinPython\\Code\\Apps\\Storage")
         lst = []
         for i in self.FileList:
             if ".png" in i: 
                 lst.append(i)
         self.ImgList = lst
 
-        NewImg = PhotoImage(file=f"Code\\Apps\\Storage\\{self.ImgList[self.imgCount-1]}")
+        NewImg = PhotoImage(file=f"MakingOSinPython\\MakingOSinPython\\Code\\Apps\\Storage{self.ImgList[self.imgCount-1]}")
         self.img.configure(image=NewImg, height=200, width=200)
         self.img.image = NewImg
         self.imgCount -= 1
