@@ -26,7 +26,7 @@ class Gallery:
                 lst.append(i)
         self.ImgList = lst
 
-        NewImg = PhotoImage(file=f"C:\\MyFolder\\PythonProgramming\\MakingOSinPython\\MakingOSinPython\\Code\\Apps\\Storage\\{self.ImgList[self.imgCount+1]}")
+        NewImg = PhotoImage(file=f"MakingOSinPython\\Code\\Apps\\Storage\\{self.ImgList[self.imgCount+1]}")
         self.img.configure(image=NewImg, height=200, width=200)
         self.img.image = NewImg
         self.imgCount += 1
@@ -39,7 +39,7 @@ class Gallery:
                 lst.append(i)
         self.ImgList = lst
 
-        NewImg = PhotoImage(file=f"MakingOSinPython\\MakingOSinPython\\Code\\Apps\\Storage{self.ImgList[self.imgCount-1]}")
+        NewImg = PhotoImage(file=f"MakingOSinPython\\Code\\Apps\\Storage{self.ImgList[self.imgCount-1]}")
         self.img.configure(image=NewImg, height=200, width=200)
         self.img.image = NewImg
         self.imgCount -= 1

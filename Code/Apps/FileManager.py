@@ -12,8 +12,8 @@ class FileManager:
 
         self.DropDownVar.set("Choose File")
         self.DeleteFileVar.set("Choose File")
-        self.DropDownList = listdir("C:\\MyFolder\\PythonProgramming\\MakingOSinPython\\MakingOSinPython\\Code\\Apps\\Storage")
-        self.DeleteFilelist = listdir("C:\\MyFolder\\PythonProgramming\\MakingOSinPython\\MakingOSinPython\\Code\\Apps\\Storage")
+        self.DropDownList = listdir("MakingOSinPython\\Code\\Apps\\Storage")
+        self.DeleteFilelist = listdir("MakingOSinPython\\Code\\Apps\\Storage")
 
         self.NewFileName = StringVar()
 
@@ -22,10 +22,10 @@ class FileManager:
         self.AppListCanvas.pack(side=LEFT, fill=BOTH, expand=True)
 
     def ShowDropDown(self):
-        self.DropDownList = listdir("C:\\MyFolder\\PythonProgramming\\MakingOSinPython\\MakingOSinPython\\Code\\Apps\\Storage")
+        self.DropDownList = listdir("MakingOSinPython\\Code\\Apps\\Storage")
         png_files = [file for file in self.DropDownList if file.endswith(".png")]
         for png_file in png_files:
-            file_path = path.join("C:\\MyFolder\\PythonProgramming\\MakingOSinPython\\MakingOSinPython\\Code\\Apps\\Storage", png_file).replace("C:\\MyFolder\\PythonProgramming\\MakingOSinPython\\MakingOSinPython\\Code\\Apps\\Storage\\", '')
+            file_path = path.join("MakingOSinPython\\Code\\Apps\\Storage", png_file).replace("MakingOSinPython\\Code\\Apps\\Storage\\", '')
             self.DropDownList.remove(file_path)
         self.OpenFileMenu = OptionMenu(self.FileManagerCanvas, self.DropDownVar, *self.DropDownList)
         self.OpenFileMenu.place(x=220, y=130)
@@ -39,12 +39,12 @@ class FileManager:
             self.FileManagerCanvas.pack(side=LEFT, fill=BOTH, expand=True)
 
         def SaveChanges():
-            with open(f"C:\\MyFolder\\PythonProgramming\\MakingOSinPython\\MakingOSinPython\\Code\\Apps\\Storage\\{self.DropDownVar.get()}", 'w') as f:
+            with open(f"MakingOSinPython\\Code\\Apps\\Storage\\{self.DropDownVar.get()}", 'w') as f:
                 f.write(DisplayText.get(1.0, 'end-1c'))
 
         DisplayText = Text(OpenFileCanvas, width=50, height=20)
         
-        with open(f"C:\\MyFolder\\PythonProgramming\\MakingOSinPython\\MakingOSinPython\\Code\\Apps\\Storage\\{self.DropDownVar.get()}", 'r') as f:
+        with open(f"MakingOSinPython\\Code\\Apps\\Storage\\{self.DropDownVar.get()}", 'r') as f:
             content = f.read()
             DisplayText.insert("end-1c", content)
 
@@ -69,22 +69,22 @@ class FileManager:
         self.NewCreateB.place(x=40, y=165)
 
     def MakeNewFile(self):
-        open(f"C:\\MyFolder\\PythonProgramming\\MakingOSinPython\\MakingOSinPython\\Code\\Apps\\Storage\\{self.NewFileName.get()}.txt", "x")
-        self.DeleteFilelist = listdir("C:\\MyFolder\\PythonProgramming\\MakingOSinPython\\MakingOSinPython\\Code\\Apps\\Storage")
+        open(f"MakingOSinPython\\Code\\Apps\\Storage\\{self.NewFileName.get()}.txt", "x")
+        self.DeleteFilelist = listdir("MakingOSinPython\\Code\\Apps\\Storage")
         self.DeleteMenu = OptionMenu(self.FileManagerCanvas, self.DeleteFileVar, *self.DeleteFilelist)
         self.NewNameL.place_forget()
         self.NewNameE.place_forget()
         self.NewCreateB.place_forget()
 
     def ShowDeleteFiles(self):
-        self.DeleteFilelist = listdir("C:\\MyFolder\\PythonProgramming\\MakingOSinPython\\MakingOSinPython\\Code\\Apps\\Storage")
+        self.DeleteFilelist = listdir("MakingOSinPython\\Code\\Apps\\Storage")
         self.DeleteMenu = OptionMenu(self.FileManagerCanvas, self.DeleteFileVar, *self.DeleteFilelist)
         self.DeleteMenu.place(x=150, y=290)
 
     def DeleteFile(self):
         self.DeleteMenu.place_forget()
-        remove(f"C:\\MyFolder\\PythonProgramming\\MakingOSinPython\\MakingOSinPython\\Code\\Apps\\Storage\\{self.DeleteFileVar.get()}")
-        self.DeleteFilelist = listdir("C:\\MyFolder\\PythonProgramming\\MakingOSinPython\\MakingOSinPython\\Code\\Apps\\Storage")
+        remove(f"MakingOSinPython\\Code\\Apps\\Storage\\{self.DeleteFileVar.get()}")
+        self.DeleteFilelist = listdir("MakingOSinPython\\Code\\Apps\\Storage")
         self.DeleteMenu = OptionMenu(self.FileManagerCanvas, self.DeleteFileVar, *self.DeleteFilelist)
         self.DropDownVar.set("Choose File")
         self.DeleteFileVar.set("Choose File")
